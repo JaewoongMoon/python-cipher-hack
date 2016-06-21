@@ -34,6 +34,7 @@ def encryptMessage(key, message):
             #move pointer over
             pointer += key
 
+
     # Convert the ciphertext list into a single string value and return it. 
     return ''.join(ciphertext)
 
