@@ -3,7 +3,7 @@
 
 import os, re, copy, pprint, pyperclip, simpleSubcipher, makeWordPatterns
 
-if not os.path.exist('wordPatterns.py'):
+if not os.path.exists('wordPatterns.py'):
     makeWordPatterns.main() # create the wordPatterns.py file
 import wordPatterns
 
@@ -45,7 +45,7 @@ def addLettersToMapping(letterMapping, cipherword, candidate):
     # decryption letters for the cipherletters in the cipherletter mapping. 
 
     letterMapping = copy.deepcopy(letterMapping)
-    for i in range(len(ciperword)):
+    for i in range(len(cipherword)):
         if candidate[i] not in letterMapping[cipherword[i]]:
             letterMapping[cipherword[i]].append(candidate[i])
     return letterMapping
@@ -53,7 +53,7 @@ def addLettersToMapping(letterMapping, cipherword, candidate):
 def intersectMappings(mapA, mapB):
     # To intersect two maps, create a blank map, and then add only the
     # potential decryption letters if they exist in BOTH maps. 
-    interectedMapping = getBlankCipherletterMapping()
+    intersectedMapping = getBlankCipherletterMapping()
     for letter in LETTERS:
         
         # An empty list means "any letter is possible". In this case
