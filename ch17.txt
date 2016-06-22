@@ -1,0 +1,2 @@
+This is similar to how the Caesar cipher works with the St. Cyr slide, except the bottom row is scrambled instead of in alphabetical order and just shifed over. The advantage of the simple substitution cipher is that there are far more possible keys. The disadvantage is that the key is 26 characters long and harder to memorize. If you write down the eky, make sure that this key is never read by anyone else!
+
