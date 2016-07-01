@@ -1,6 +1,7 @@
 # Caesar Cipher Hacker
 
-message = 'GUVF VF ZL FRPERG ZRFFNTR.'
+#message = 'GUVF VF ZL FRPERG ZRFFNTR.'
+message = """Uryyb, jrypbzr gb Frphevgl FNXHEN. Jr ubcr lbh'ir rawblrq gur pbasrerapr."""
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 # loop through every possible key

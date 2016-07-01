@@ -8,10 +8,10 @@ def main():
 #    url = 'http://localhost/test.php'
     url = 'http://10.248.90.236/testsite/ctf1.php'
     answer = ''
-    sessionId = 'p1do2p47hm4hvsfrauf8e3d9h1'
+    sessionId = 'k9e5dpsdsl29t6h15us189ska5'
     cookies = {'PHPSESSID':sessionId}
     
-    for i in range(0,130):
+    for i in range(0,120):
         payload = {'answer':answer}
         res = requests.get(url, params=payload, cookies=cookies)
         print(res.text)

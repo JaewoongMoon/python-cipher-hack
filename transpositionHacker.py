@@ -5,18 +5,10 @@ import pyperclip, detectEnglish, transpositionDecrypt
 def main():
     # You might want to copy & paste this text from the source code at
     # http://invpy.com/transpositionHacker.py
-    myMessage = """Cb b rssti aieih rooaopbrtnsceee er es no npfgcwu plri
-ch nitaalr eiuengiteehb(e1 hilincegeoamn fubehgtarndcstudmd nM eu eacBoltaetee
-oinebcdkyremdteghn.aa2r81a condari fmps" tad l t oisn sit u1rnd stara nvhn fs
-edbh ee,n e necrg6 8nmisv l nc muiftegiitm tutmg cm shSs9fcie ebintcaets h a
-ihda cctrhe ele 1O7 aaoem waoaatdahretnhechaopnooeapece9etfncdbgsoeb uuteitgna.
-rteoh add e,D7c1Etnpneehtn beete" evecoal lsfmcrl iu1cifgo ai. sl1rchdnheev sh
-meBd ies e9t)nh,htcnoecplrrh ,ide hmtlme. pheaLem,toeinfgn t e9yce da' eN eMp a
-ffn Fc1o ge eohg dere.eec s nfap yox hla yon. lnrnsreaBoa t,e eitsw il ulpbdofg
-BRe bwlmprraio po droB wtinue r Pieno nc ayieeto'lulcih sfnc ownaSserbereiaSm
--eaiah, nnrttgcC maciiritvledastinideI nn rms iehn tsigaBmuoetcetias rn"""
 
-    myMessage2 = """Cb b rssti aieih rooaopbrtnsceee er es no npfgcwu  plri ch nitaalr eiuengiteehb(e1  hilincegeoamn fubehgtarndcstudmd nM eu\neacBoltaeteeoinebcdkyremdteghn.aa2r81a\ncondari\nfmps" tad   l t oisn sit u1rnd stara nvhn fsedbh ee,n  e necrg6  8nmisv l nc muiftegiitm tutmg cm shSs9fcie ebintcaets h\n aihda cctrhe ele 1O7 aaoem waoaatdahretnhechaopnooeapece9etfncdbgsoeb uuteitgna.rteoh add\ne,D7c1Etnpneehtn beete" evecoal lsfmcrl iu1cifgo ai.\nsl1rchdnheev sh meBd ies e9t)nh,htcnoecplrrh ,ide hmtlme. pheaLem,toeinfgn t e9yce da\' eN eMp a ffn Fc1o ge eohg dere.eec\ns nfap\nyox hla\nyon. lnrnsreaBoa t,e eitsw il\nulpbdofgBRe bwlmprraio po  droB wtinue r Pieno nc ayieeto\'lulcih sfnc  ownaSserbereiaSm-eaiah, nnrttgcC  maciiritvledastinideI  nn rms iehn tsigaBmuoetcetias rn"""
+    myMessage = """Cb b rssti aieih rooaopbrtnsceee er es no npfgcwu  plri ch nitaalr eiuengiteehb(e1  hilincegeoamn fubehgtarndcstudmd nM eu\neacBoltaeteeoinebcdkyremdteghn.aa2r81a\ncondari\nfmps" tad   l t oisn sit u1rnd stara nvhn fsedbh ee,n  e necrg6  8nmisv l nc muiftegiitm tutmg cm shSs9fcie ebintcaets h\n aihda cctrhe ele 1O7 aaoem waoaatdahretnhechaopnooeapece9etfncdbgsoeb uuteitgna.rteoh add\ne,D7c1Etnpneehtn beete" evecoal lsfmcrl iu1cifgo ai.\nsl1rchdnheev sh meBd ies e9t)nh,htcnoecplrrh ,ide hmtlme. pheaLem,toeinfgn t e9yce da\' eN eMp a ffn Fc1o ge eohg dere.eec\ns nfap\nyox hla\nyon. lnrnsreaBoa t,e eitsw il\nulpbdofgBRe bwlmprraio po  droB wtinue r Pieno nc ayieeto\'lulcih sfnc  ownaSserbereiaSm-eaiah, nnrttgcC  maciiritvledastinideI  nn rms iehn tsigaBmuoetcetias rn"""
+
+    myMessage2 = """Uryyb, jrypbzr gb Frphevgl FNXHEN. Jr ubcr lbh'ir rawblrq gur pbasrerapr."""
 
     hackedMessage = hackTransposition(myMessage2)
 
