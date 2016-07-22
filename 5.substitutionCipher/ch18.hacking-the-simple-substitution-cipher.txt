@@ -1,0 +1,18 @@
+
+The pprint module has functions for pretty printing values, which is useful for printing dictionary and list values on the screen. 
+
+However, if you want to have this "prettified" text as a string value instead of displaying it on the screen, you can use the pprint.pformat() fucntion, which returns the prettified string:
+
+First, in order to make sure all the letters have the same case, line 14 changes the word parameter to an uppercase version of itself. We then need three variables:
+
+- nextNum stores the next number used when a new letter is found. 
+- letterNums stores a dictionary with keys of single-letter strings of single letters, and values of the integer number for that letter. As we find new letters in the word, the letter and its number are stored in leeterNums. 
+- wordPattern will be the string that is returned from this function. But we will be building this string one character at a time, so we will use the list-append-join process to do this. This is why wordPattern starts as a blank list instead of a blank string. 
+
+
+
+Summary
+Whew! This hacking program was fairly complicated. The cipherletter mapping is the main tool for modeling the possible letters that each ciphertext letter can decrypt to. By Adding letters (based on the candidiates for each cipherword) to the mapping, and then intersecting mappings and removing solved letters from other lists of potential decryption letters, we can narrow down the number of possible keys. Instead of trying all ---- possible keys we can use some sophisticated Python code to figure out exactly what most (if not all) of the original simple substitution key was. 
+The main strength of the simple substitution cipher is the large number of possible keys. But the downfall is that it is easy enough to compare the cipherwords to words in a dictionary file to slowly figure out which cipherletters decrypt to which letters. The next chapter's cipher is much more powerful. For several hundred years, it was considered impossible to break. It is a "polyalphabetic" substitution cipher called the Vigenere cipher. 
+
+Instead, hackSimpleSub() will return a cipherletter mapping

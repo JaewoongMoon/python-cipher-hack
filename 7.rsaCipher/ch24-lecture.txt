@@ -1,0 +1,169 @@
+Topics Covered In this Chapter:
+- Public key cryptography
+- Man-in-the-middle attacks
+- ASCII
+- The chr() and ord() functions
+- The bytes data type and bytes function
+- The encode() string and decode() bytes method
+- The min() and max(0 functions
+- The insert() list method
+- The pow() function
+
+"Why shouldn't I work for the NSA? That's a tough one, but I'll take a shot. Say I'm working at the NSA and somebody puts a code on my desk, something no one else can break. Maybe I take a shot at it, and maybe I break it. I'm real happy with myself, 'cause I did my job well. But maybe that code was the location of some rebel army in North Africa or the Middle East and once they have that location they bomb the village where the rebels are hiding. Fifteen hundred people that I never met, never had no problem with, get killed.	
+
+Now the politicians are saying 'Oh, send in the Marines to secure the area,' 'cause they don't give a shit. It won't be their kid over there getting shot just like it wasn't them when their number got called 'cause they were pulling a tour in the National Guard. It'll be some kid from Southie over there taking shrapnel in the ass. He comes back to find that the plant he used to work at got exported to the country he just got back from, and the guy that put the shrapnel in his add got his old job, 'cause he'll work for fifteen cents a day and no bathroom breaks.
+
+Meanwhile he realizes that the only reason he was over there is the first place was so we could install a government that would sell us oil at a good price. And of course the oil companies use the little skirmish to scare up domestic oil prices, a cute little ancillary benefit for them, but it ain't helping my buddy at two-fifty a gallon. The're taking their sweet time bringing the oil back, of course, and maybe they took the liberty of hiring an alcoholic skipper who likes to drink martineis and funcking play slalom with the icebergs. It ain't too long until he hits one, spills the oil, and kills all the sea life in the North Atlantic.		
+
+So now my buddy's out of work, he can't afford to drive, so he's walking to the funcking job interviews which sucks because the shrapnel in his ass is giving him chronic hemorrhoids. And meanwhile he's starving 'cause any time he tries to get a bite to eat the only Blue Plate Special they're serving is North Atlantic Scrod with Quaker State.
+
+So what did I think? I'm holding out for something better."
+
+														"Good Will Hunting"
+
+<Public Key Cryptography>
+All of the ciphers in this book so far have one thing in common: the key used for encryption is the same key used for decryption. This leads to a tricky problem: How do you share encrypted messages with someone you've never talked to before?
+
+Say someone on the other side of the world wants to communicate with you. But you both know that spy agencies are monitoring all emails, letters, and calls that you send. You could send them encrypted messages, however you would both have to agree on a secret key to use. But if one of you emailed the other a secret key to use, then the spy agency would be able to see this key and then decypt any future messages you send with that key. Normally you would both secretly meet in person and exchange the key then. But you can't do this if the person is on the other side of the world. You could try encrypting the key before you send it, but then you would have to send the secret key for that message to the other person and it would also be intercepted. 
+
+This is a problem solved by public key cryptography. public key cryptography ciphers have two keys, one used for encryption and one used for decryption. A cipher that uses different keys for encryption and decryption is called an asymmetric cipher, while the ciphers that use the same key for encryption and decryption are called symmetric ciphers. 
+
+The important thing to know is that a message encrypted with one key can only be decrypted with the other key. So even if someone got their hands on the encryption key, they would not be able to read an encrypted message because the encryption key can only encrypt; it cannot be used to decrypt messages that is encrypted. 
+
+So when we have these two keys, we call one the public key and one the private key. The public key is shared with the entire world. However, the private key must be kept secret.
+
+If Alice wants to send Bob a message, Alice finds Bob's public key (or Bob can give it to her). Then Alice encrypts her message to Bob with Bob's public key. Since the public key cannot decrypt a message that was encrypted with it, it doesn't matter that everyone else has Bob's public key.
+
+When Bob receives the encrypted message, he uses his private key to decrypt it. If Bob wants to reply to Alice, he finds her public key and encryptes his reply with it. Since only Alice knows her own private key, Alice will be the only person who can decrypt the encrypted message.
+
+Remember that when sending encrypted messages using a public key cipher:
+		 - The public key is used for encrypting.
+		 - The private key is used for decrypting. 
+
+To go back to the example of communicationg with someone across the world, now it doesn't matter if you send them your public key. Even if the spy agency has your public key, they cannot read messages that were encrypted with the public key. Only your private key can decrypt those messages, and you keep that key a secret.
+
+The particular public key cipher that we will implement is called the RSA cipher, which was invented in 1977 and named after its inventors: Ron Rivest, Adi Shamir and Leonard Adleman. 
+
+<The Dangers of "Textbook" RSA>
+While we don't write a hacking program for the RSA cipher program in this book, don't make the mistake of thinking the rsaCipher.py program featured in this chapter is secure. Getting cryptography right is very hard and requires a lot of experience to know if a cipher (and a program that implements it) is truly secure. 
+
+The RSA program in this chapter is known as textbook RSA because, while it does implement the RSA algorithm correctly using large prime numbers, there are several faults with it that can lead to its encrypted messages being hacked. The difference between pseudorandom and truly random number generation functions is one such fault. Beut there are many others. 
+
+So while you might not be able to hack the ciphertext created by rsaCipher.py, don't think that no one else can. The highly acoomplished cryptographer Bruce Schneier once said,"Anyone, from the most clueless amateur to the best cryptographer, can create an algorithm that he himself can't break. It's not even hard. What is hard is creating an algorithm that no one else can break, even after years of analysis. And the only way to prove that is subject the algorithm to years of analysis by the best cryptographers around. "
+
+<A Note About Athentication>
+There is a slight problem with public key ciphers. Imagine you got an email that said this:
+	  "Hello. I am Emmanuel Goldstein, leader of the resistance. I would like to communicate secretly with you about very important matters. Attached is my public key."
+
+Using the public key, you can be sure that the messages you send cannot be read by anyone other than "Emmanuel Goldstein". But how do you know the person who sent you this is actually Emmanuel Goldstein? Maybe it is Emmmaunuel Goldstein that you are sending encrypted messages to, or maybe it is a spy agency that is pretending to be Emmmanuel Goldstenin to lure you into a trap. 
+
+So whild public key ciphers (and, in fact, all the ciphers in this book) can provide confidentiality (that is, keeping the message a secret), they don't provide authentication (this is, proof that who you are communicating with really is who they say they are).
+
+Normally this isn't a problem with symmetric ciphers, because when you exchange keys with the person you can see them for yourself. However, you don't need to see a person in order to get their public key and begin sending them encrypted messages. This is something to keep in mind when using public key cryptography. 
+
+There is an entire field called PKI (Public Key Infrastructure) that deals with authentication so that you can match public keys to people with some level of security; however, PKI is beyound the scope of this book. 
+
+<The Main-In-The-Middle Attack>
+Even more insidious than hacking our encrypted messages is a man-in-the-middle attack. Say Emmanuel Goldstein really did want to communicate with you and sent you the above message, but the spy agency intercepted it. They could then replace the public key Emmanuel attached to the email with their own public key, and then send it on to you. You would think the spy agency's key was Emmanuel's key!
+
+Now when you encrypt a reply to Emmanuel, they intercept that message, decrypt it (since you really encrypted the message with the spy agency's public key, not Emmanuel's public key) and read it, and then they re-encrypt it with Emmanuel's actual public key and send it to him. They do the same thing with any messages that Emmanuel sends to you. 
+
+Again, this problem is caused by the fact that the public key cipher only provides confidentiality, but does not privde authentication. 
+
+<Generating Public and Private Keys>
+A key in the RSA scheme is made of two numbers. There are three steps to creating the keys:
+  1. Create two random, very large prime numbers. These numbers will be called p and q.
+  	 Multiply these numbers to get a number which we will call n.
+  2. Create a random number, called e, which is relatively prime with (p - 1) * (q -1).
+  3. Calculate the modular inverse of e. This number will be called d.
+
+
+The public key will be the two numbers n end e. The private key will be the two numbers n and d.
+(Notice that both keys have the number n in them.) 
+
+
+<The Program's generateKey() function>
+The first step of creating keys is coming up with two random prime numbers which are called p and q. The generateLargePrime() function we wrote in the last chapter's rabinMiller.py program will return a prime number ( as an integer value) of the size determined by the value in keySize on line 19 and line 21. These integer values are stored in variables named q and q. 
+
+On line 22, the number n is calculated by multiplying p and q, and stored in n. 
+
+
+The second step is calculating a number e which is relatively prime to the product of p -1 and q -1. The while loop on line 26 is an infinite loop. The random.randrange() call on line 28 returns a radom integer (stored in the e variable) and line 29 tests if this random number is relatively prime to (p-1) * (q-1). If it is, the break statement on line 30 breaks out of the infinate loop. Otherwise, the program execution jumps back to line 26 and will keep trying different random numbers until it finds one that is relatively prime with (p-1) * (q-1). 
+
+This way we can guarantee that when the program execution gets past this while loop, the variable e will contain a number that is relatively prime to (p-1)*(q-1). 
+
+The third step is to find the mod inverse of e. The findModInverse() function that we wrote for our cryptomath module in Chapter 14 will do this calculation for us. The mod inverse of e is stored in a variable named d. 
+
+In the RSA cipher, each key is made up of two numbers. The pubkic key will be the integers  stored in n and e, and the private key will be the integers stored in n and d. Line 36 and 37 store these integers as tuples in the variables publicKey and privateKey. 
+
+There's no reason e has to be in the public key and d in the private key, and you could swap them . However, once you make the public key public, you must keep the private key a secret. 
+
+
+While the generateKey() function will generate the actual integers for the public and private keys, we need to store these numbers in a file so that our RSA cipher program can use them later to encrypt and decrypt. Each of the keys are makde of two integers that are hundreds of digits long; that's too many to memorize or conveniently write down. The easiest way to sotre them is as text files on your computer. 
+
+This means that you have to be sure that nobody hacks your computer and copies these key files. It might be a good idea to store these files on a USB thumb drive instead of on your computer. However, this is also risky. If someone borrows the thumb drive then they could copy the key files, or if you accidentally break or lose the thumb drive then you will lose your own private key! 
+
+To prevent us from accidentally deleting our key files by running the program again, line 51 checks to see if the public or private key files with the given name already exist. If they do, the program will exit with a warning message.
+
+
+After the check, line 54 has a call to generateKey() to get the public and private keys using the multiple assignment trick. The generateKey() function returns a tuple of two tuples. The first tuple has two integers for the public key and the second tuple has two integers for the private key. These are stored in the variables publicKey and privateKey. 
+
+Line 57 prints some information about the public key. It can tell how many digits are in the integer in publicKey[0] and publicKey[1] by converting those values to strings with the str() function, and then finding the length of the string with the len() function 
+
+The key file's contents will be the key size, a comma, the n integer, another comma, and the e (or d) integer. The file's contents will look like:<key size integer>, <n integer>, <e or d integer>
+
+Lines 59 to 61 open a file in wirte mode, as you can tell from the 'w' string passed to open(). 
+
+	 
+<Hybrid Cryptosystems>
+In real life, the complicated mathematics make RSA and public-key encryption slow to compute. This is especially true for servers that need to make hundreds or thousands of encrypted connections a second. Instead, the RSA cipher is often used to encrypt the key for a symmetric key cipher. The encrypted key is then sent to the other person, and that key is used to pass messages that are encrypted using the (faster) symmetric cipher. Using a symmetric key cipher and an asymmetic key cipher to securely communicate like this is called a hybrid cryptosystem. 
+
+It's not recommended to use the rsaCipher.py program to encrypt the keys for, say, the vigenereCipher.py program. We've already proven that the Vigenere cipher is hackable. A string symmetric key cipher isn't covered in this book, but you can still use rsaCipher.py to encrypt your files anyway. 
+
+
+At the start of the text is 262 (which is the original message length), followed by an underscore and then 128 (which is the "block size"; block size are explained later). If you look carefully at the long string of digits after that, you will find two commas. The message is encrypted into three very large inters, separated by commas. These integers are the encrypted form of the string in the message variable on line 19.
+
+To decrypt, change the mode variable to 'decrypt' and run the program again. Make sure privKeyFilename on line 28 is set to the filename of the private key file and that this file is in the same folder as rasCipher.py. When you run the program, the output on the screen will look like this:
+
+...
+
+
+At the start of the text is 262 (which is the original message length), followed by an underscore and then 128 (which is the "block size"; block sizes are explained later). If you look carefully at the long string of digits after that, you will find two commas. The message is encrypted into three very large integers, separated by commas. These integers are the encrypted form of the string in the message variable on line 19. 
+
+
+
+<Digital Signatures>
+Digital signatures is a very large topic of its own, but we can cover a little of it here. Let's say Alice sent this email to Bob:
+
+Normally we encrypt with the public key, so that only the owner of the private key can decrypt this ciphertext. 
+But we can also do the reverse. If Alice writes this message, and then "encrypts" it with her private key, this will produce "ciphertext" that only Alice's public key can decrypt. This "ciphertext" isn't really so secret since everyone in the world has access to Alice's public key to decrypt it. But by encrypting a message with her own private key, Alice has digitally signed the message in a way that cannot be forged. Everyone can decrypt this digned message with ther public key, and since only Alice has access to her private key, only Alice		...
+
+
+<ASCII:Using Numbers to Represent Characters>
+All data is stored on your computer as numbers. A code called the American Standard Code for Information Interchage, or ASCII maps numbers to characters. 
+A single ASCII character uses one byte of memory to store. A byte is enough memory to store a number from 0 to 255. So the string 'Hello' is actually stored on your computer as the numbers 72, 101, 108, 108, and 111. These numbers take up 5 bytes.
+
+ASCII is just a code. We can encode characters into ASCII numbers and decode ASCII numbers back to characters.
+
+The chr() function takes an integer ASCII number as the argument and returns a single-character string. The ord() function (short for "ordinal") takes a single-character string as the argument, and returns the integer ASCII value for that character. Try typing the following ..
+
+But if you have a string with many letters, it may be easier to use the decode() and decode() string methods explained later in this chapter. 
+
+<Blocks>
+In cryptography, a "block" is a fixed length of bits. In our RSA cipher program, a block is represented by an integer. Our message string value will be converted into several integer values. (i.e. several blocks).
+
+- It is important to note that the RSA encryption algorithm requires the block size be equal or less than the key size. Otherwise, the math doesn't work and you won't be able to decrypt the ciphertext the program produced.
+
+The reason RSA needs to work on a block (which represents multiple characters) is because if we used the RSA encryption algorithm on a single character, the same plaintext characters would always encrypt to the same ciphertext characters. In that case, the RSA cipher just becomes a simple substitution cipher with fancy mathematics, kind of like the affine and Caesar ciphers. 
+
+The RSA cipher works by encrypting an integer that is hundreds of digits long (that is, a block) into a new integer that is hundreds of digits long (that is, a new block).
+
+The encode() string method will return a "bytes" object. Because a byte is represented as a number from 0 to 255, a bytes value is like a list of integers (although these integers have a very limited range of 0 to 255). The len() function and indexing work with a bytes object in the same way a list of integers would. A bytes value can be turned into a list value of integer values by passing it to the list() function.
+
+Note that a single byte value is a collection of values, just like a single list value can contain multiple values. If you try to get a single "byte" from a bytes object (like spam[2] does above), this just evaluates to an integer value. 
+
+The getTextFromBlocks does the opposite of getBlocksFromText(). This function has passed a list of block integers (as the blockInts parameter) and returns the string value that these blocks represent. The function needs the length of the message encoded in messageLength, since this information is needed to get the string from the last block integer if it is not a full 128 characters in size. 
+
+Just as before, blockSize will default to DEFAULT_BLOCK_SIZE if no third argument is passed to getTextFromBlocks(), and DEFAULT_BLOCK_SIZE was set to 128.
+
+The message list (which starts as blank) will contain a string value for each character that was computed from each block integer in blockInts. 

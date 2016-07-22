@@ -1,0 +1,85 @@
+Topics Covered In This Chapter
+- Prime and Composite Numbers
+- The Sieve of Eratosthenes
+- The Rabin-Miller Primality Test
+
+"Mathmaticians have tried in vain to this day to discover some order in the sequence of prime numbers, and we have reason to believe that it is a mystery into which the human mind will never penetrate." - Leonhard Eueler, 18th century mathematician
+
+
+
+All of the ciphers described in this book so far have been around for hundreds of years, and all of them (with the exception of the one-time pad) are easily broken by computers. These ciphers worked very well when hackers had to rely on pencil and paper to hack them, but computers can now manipulate data trillions of times faster than a person with a pencil.
+
+The RSA cipher has several improvements over these old ciphers, and it will be detailed in the next chapter. However, the RSA cipher will require us to learn about prime numbers first. 
+
+
+
+<Prime Numbers>
+A prime number is an integer (this is, a whole number) that is greater than 1 and has only two factors: 1 and itself. Remember that the factors of a number are the numbers that can be multiplied to equal the original number. The numbers 3 and 7 are factors of 21. The numbers 12 has factors 2 and 6, bust also 3 and 4. 
+
+Every number has factors of 1 and itself. The numbers 1 and 21 are factors of 21. The numbers 1 and 12 are factors of 12. This is because 1 times any number will always be that same number. But if no other factors exist for that number, then that number is prime. 
+
+Here's a list of prime numbers (note that 1 is not considered a prime number):
+
+2, 3, 5, 7, ... and so on, FOREVER. 
+
+There are an infinite number of prime numbers. This means there is on "largest" prime. They just keep getting bigger and bigger, just like regular numbers do. The RSA cipher makes use of very large prime numbers in the keys it uses. Because of this, there will be far too many keys to brute-force through. 
+
+A googol is the number that has a one with a hundred zeros behid it:
+
+A billion billion billion googles has twenty-seven more zeros than a googol:
+10,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000
+
+But these are tiny numbers. A typical prime numbers used in our RSA program will have hundreds of digits:
+
+112,829,754,900,439,506,175,719,191,782,841,802,172,556,768,253,593,054,977,186,2355,84,979,780,304,652,423,405,148,425,447,063,090,165,759,070,742,102,132,335,103,295,947,000,718,386,333,756,395,799,633,478,227,612,244,071,875,721,006,813,307,628,061,280,861,610,153,485,352,017,238,548,269,452,852,733,818,231,045,171,038,838,387,845,888,589,411,762,622,041,204,120,706,150,518,465,720,862,068,595,814,264,819
+
+The above number is so big, I'm going to guess you didn't even read it to notice the typo in it. 
+
+<Composite Numbers>
+Integers that are not prime numbers are called composite numbers, because hey are composed of at least two factors besides 1 and the number itself. They are called composite numbers because there number are composed of prime numbers multipled together, such as the composite number 1,386 being composed of the prime numbers in 2 x 3 x 3 x 7 x 11.
+
+Hare are four facts about prime numbers:
+
+	 1. Prime numbers are integers greater than 1 that have only 1 and themselves as factors.
+	 2. Two is the only even prime number. (Though I guess that makes two a very odd prime number.)
+	 3. There are an infinite number of prime numbers. There is no "largest prime number".
+	 4. Multiplying two prime numbers will give a number that only has two pairs of factors, 1 and itself (like all numbers do), and the two prime numbers that were multiplied. For example, 3, and 7 are prime numbers. 3 times 7 is 21. The only factors for 21 are 1, 21, 3, and 7. 
+
+
+<Source Code for The Prime Sieve Module>
+First we will create a module that has functions related to prime numbers:
+- isPrime() will return either True or False if the number passed to it is prime or not. It will use the "divides test" algorithm.
+- primeSieve() will use the "Sieve of Eratosthenes" algorithm (explained later) to generate numbers. 
+
+Like cryptomath.py, the primeSieve.py program is only meant to be imported as a module to our other programs. It does not do anything when run on its own. 
+
+<Detecting Prime Numbers>
+The isPrime() function in primeSieve.py checks if the number can be divided evenly by a range of numbers from 2 to the square root of the number. But what about a number like 1,070,595,206,942,983? If you pass this integer to isPrime(),  it takes several secods to determine if it is prime or not. And if the number is hundreds of digits long (like the prime numbers in next chapter's RSA cipher program are), it would take over a trillion years to fiugre out if that one number is prime or not. 
+
+The isPrime() function in primeSieve.py is too slow for the large numbers we will use in the RSA cipher. Fortunately there is an algorithm called the Rabin-Miller Primality Test that can calculate if such large numbers are prime or not. We will create a new isPrime() in rabinMiller.py that makes use of this better algorithm.
+
+The code for this algorithm uses advanced mathematics, and how the algorithm works is beyond the scope of this book. Like the gcd() function in cryptomath.py, this book will just present the code for the algorithm for you to use without explanation. 
+
+<Source Code for the Rabin-Miller Module>
+
+...
+
+<Summary>
+Prime numbers have fascinating properties in mathematics. As you will learn in the next chapter, they are also the backbone of ciphers used in actual professional encryption software. The definition of a prime number is simple enough: a number that only has one and itself as factors. But determining which numbers are prime and which are composite(this is, not prime) takes some clever code.
+
+Modding a number with all the numbers from two up to the square root of the number is 	
+how our isPrime() function determines if that number is prime or not. A prime number will never have a remainder of 0 when it is modded by any number (besides its factors, 1 and itself.) But this can take a while for the computer to calculate when testing large numbers for primality. 
+
+The Sieve of Erastothenes can be used to quickly tell if a range of numbers is prime or not, but this requires a lot of memory.
+
+The RSA cipher makes use of extremely large prime numbers that are hundreds of digits long. The Sieve of Erastothenes and tghe basic isPrime() function we have in primeSieve.py aren't sophisticated enough to handle numbers this large. 
+
+The Rabin-Miller algorithm uses some mathematics which has simple code(but the mathematical reasoning behid it is too complex for this book), but it allows us to determine if a number that is hundreds of digits long is prime. 
+
+In the next chapter, we will use the prime number code we developed for the rabinMiller.py moudle in our RSA Cipher program. At last, we will have a cipher easier to use than the one-time pad cipher but that cannot be hacked by the simple hacker techniques in this book! 
+
+
+
+
+
+

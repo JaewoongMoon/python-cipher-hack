@@ -1,0 +1,32 @@
+Recall that out kasiskiExamination() function isn't guaranteed to return the one true integer length of the Vigenere key, but rather the function returns a list of several lengths sorted in order of most likely to be the key length. If our code has guessed the wrong key length, then it will have to try again with a different key length. The attemptHackWithKeyLength() function is passed the ciphertext and the key length guess. If successful, this function returns a string of the hacked message. If the hacking fails, the function returns None.
+
+The hacking code works on uppercase letters but the original string will also be needed,
+so the upppercase form of the ciphertext string will be stored in a separate variable named ciphertextUp.
+
+If we assume the value in the mostLikelyKeyLength is the correct key length, 
+the hack algorithm calls getNthSubKeysLetters() for each subkey 
+and then brute-forces through the 26 possible letters for each sub key
+to find the one that produces decrypted text
+whose letter frequency closest matched the letter frequency of English
+
+First, am empty list is sotred in allFreqScores on line 160. 
+The for loop on line 161 sets the nth variable to each integer from 1 to the 
+mostLikelyKeyLength value. (Remember, that when range() is passed two arguments,
+the range goes up to, but not including, the argument. The +1 is put into the code 
+so that the integer value in mostLikelyKeyLength itself is included in the range object returned. 
+
+The letters of the Nth subkey are returned from getNthSubKeysLetters() on line 162.
+
+Next, a list of English Frequency match scores is sotred in a list in a variable named freqScores. This variable starts as an empty list on line 168 and then the for loop on line 169 loops through each of the 26 uppercase letter from the LETTERS string. The possbileKey value is used to decrypt the ciphertext by calling vigenereCipher.decryptMessage() on line 170. The subkey in possibleKey is only one letter, but the string in nthLetters is made up of only the letters from message that would have been encrypted with that subkey if we've guessed the key length correctly.
+
+The decrypted text is then passed to freqAnalysis.englishFreqMatchScore() to see how closely the frequency of the letters in decryptedText matches the letter frequency of regular English. (Remember from the last chapter that the return value will be an integer between 0 and 12, with a higher number meaning a closer match.)
+
+This frequency match score, along with the key used to decrypt, are put into a tuple that is stored in a variable named keyAndFreqMatchTuple on line 171. This tuple is appended to the end of freqScores on line 172. 
+
+After the for loop on line 169 completes, the freqScores list will contain 26 key-and-frequency-match-score tuples: one tuple for each of the 26 subkeys. We need to sort this so that the tuples with the largest English frequency match scores are first in the list. 
+This means that we want to sort by the value at index 1 of the tuples in freqScores and in reverse(this is, descending) order. 
+We call the sort() method on the freqScores list, 
+passing the function value getItemAtIndexOne(not calling the function:note the lack of parentheses) for the key keyword argument. 
+The value True is passed for the reverse keyword argument to sort in reverse (that is, descending) order. 
+
+The NUM_MOST_FREQ_LETTERS contstant was set to the integer value 3 on line 9. Once the tuples in freqScores are sorted, a list containing only the first 3 tuples 
