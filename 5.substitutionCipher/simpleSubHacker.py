@@ -12,13 +12,7 @@ LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 nonLettersOrSpacePattern = re.compile('[^A-Z\s]')
 
 def main():
-#    message = 'Sy l nlx sr pyyacao l ylwj eiswi upar lulsxrj isrsxrjsxwjr, ia esmm rwctjsxsza sj wmpramh, lxo txmarr jia aqsoaxwa srpqaceiamnsxu, ia esmm caytra jp famsaqa sj. Sy, px jia pjiac ilxo, ia srpyyacao rpnajisxu eiswi lyypcor l calrpx ypc lwjsxu sx lwwpcolxwa jp isrsxrjsxwjr, ia esmm lwwabj sj aqax px jia rmsuijarj aqsoaxwa. Jia pcsusx pynhjir sr agbmlsxao sx jisr elh. -Facjclxo Ctrramm'
-
-#    message = """Uryyb, jrypbzr gb Frphevgl FNXHEN. Jr ubcr lbh'ir rawblrq gur pbasrerapr."""
-
-    message = """ASI JL DUJZTED SA J EJZD JVV NBTODI, VDD FOD AHB VBFD:
-OFFT://YYY.AHB.MSK/TJMD2/CDN08/NSCD_122908.OFZE, PSQD GSW MWDVV? LS,
-JNFWJE AHB RWBX. """
+    message = 'Sy l nlx sr pyyacao l ylwj eiswi upar lulsxrj isrsxrjsxwjr, ia esmm rwctjsxsza sj wmpramh, lxo txmarr jia aqsoaxwa srpqaceiamnsxu, ia esmm caytra jp famsaqa sj. Sy, px jia pjiac ilxo, ia srpyyacao rpnajisxu eiswi lyypcor l calrpx ypc lwjsxu sx lwwpcolxwa jp isrsxrjsxwjr, ia esmm lwwabj sj aqax px jia rmsuijarj aqsoaxwa. Jia pcsusx pynhjir sr agbmlsxao sx jisr elh. -Facjclxo Ctrramm'
 
     # Determine the possible valid ciphertext translations.
     print('Hacking...')
