@@ -32,7 +32,7 @@ def primeSieve(sieveSize):
         pointer = i * 2
         while pointer < sieveSize:
             sieve[pointer] = False
-            pinter += i
+            pointer += i
 
 
     # compile the list of primes
